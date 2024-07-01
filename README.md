@@ -47,10 +47,10 @@ https://www.youtube.com/watch?v=ljAO6j5Ln9Q
 
 <details>
 
-<summary>dot-files/summary>
+<summary>dot-files</summary>
 
 ### .bashrc
-https://github.com/falconizmi/start-fedora/.bashrc
+https://github.com/falconizmi/start-fedora/blob/main/.bashrc
 
 </details>
 
