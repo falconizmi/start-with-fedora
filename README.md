@@ -39,6 +39,8 @@ https://snapcraft.io/install/ferdium/fedora
 fix discord issue:
 
 https://github.com/ferdium/ferdium-app/issues/718
+![image](https://github.com/user-attachments/assets/ccbdf165-49c8-42b4-ae3e-b99697da5054)
+
 
 ### Setup OBS
 https://www.youtube.com/watch?v=ljAO6j5Ln9Q
