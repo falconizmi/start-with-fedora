@@ -52,6 +52,67 @@ https://www.youtube.com/watch?v=ljAO6j5Ln9Q
 <summary>dot-files</summary>
 
 ### .bashrc
+
+Run this command so can your git-branch in prompt works:
+
+```bash
+
+curl -o ~/.git-prompt.sh \
+    https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+```
+
+Add this code to your .bashrc to have similar prompt as me
+```bash
+# Command line prompt
+PROMPT_COMMAND=__prompt_command    # Function to generate PS1 after CMDs
+
+__prompt_command() {
+    local EXIT="$?"                # This needs to be first
+    PS1=""
+
+    # Your Username
+    local USERNAME="FalconIzmi"
+
+    # Colors
+    local RCol='\[\e[0m\]'    # Exit color-change mode
+    local Red='\[\e[0;31m\]'
+    local Gre='\[\e[0;32m\]'
+    local LightGreenBold='\[\e[1;92m\]'
+    local LightBlueBold='\[\e[38;5;45;1m\]'
+    local DarkBlueBold='\[\e[38;5;33;1m\]'
+
+    # Setup Virtual Env
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Strip out the path
+    local RemovePrefix="${VIRTUAL_ENV##*/}"
+    #  Leave the env name
+    local RemoveSufix="${RemovePrefix%-*}"
+    local Venv="(${LightGreenBold}venv${RCol}:${RemoveSufix}) "
+    else
+        # In case you don't have one activated
+        local Venv=''
+    fi
+    PS1+="${Venv}"
+
+    # Setup Git
+    source ~/.git-prompt.sh
+    local GIT=$(__git_ps1 " (%s)")
+
+    # Start adding code
+    # Exit Code
+    if [ $EXIT != 0 ]; then
+        PS1+="[${Red}$EXIT${RCol}] "        # Add red if exit code non 0
+    else
+        PS1+="[${Gre}$EXIT${RCol}] "
+    fi
+
+    # First line
+    PS1+="[\t] ${DarkBlueBold}[\w]${RCol}\n"
+    # Second line
+    PS1+="${LightGreenBold}${USERNAME}${RCol}${LightBlueBold}${GIT}${RCol} ${Gre}\$${RCol} "
+}
+```
+
 https://github.com/falconizmi/start-fedora/blob/main/.bashrc
 
 </details>
