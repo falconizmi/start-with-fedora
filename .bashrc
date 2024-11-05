@@ -28,58 +28,42 @@ unset rc
 ################### Izmi settings ###################
 #####################################################
 
-git_branch() {
-     if git status &> /dev/null ; then
-         echo -e ':\e[0;35m'$(git branch --show-current)'\e[m'
-    fi
-
-    # echo ":" $(git branch --show-curemt 2> /dev/null)
-}
-
-# show currently stopped jobs next to the command prompt
-cur_jobs () {
-    if [ ! -z "$(jobs)" ] ; then
-        echo -n ' ('
-
-        # 1. print all currently paused jobs
-        # 2. get names of the paused jobs and add a space at the end
-        # 3. replace newlines with commas
-        # 4. ignore last two chars - a joining comma and a space
-        jobs -s \
-            | sed "s/.*Stopped *\(.*\)/\1 /"  \
-            | tr  '\n' ',' \
-            | head -c -2
-
-        echo -n ')'
-    fi
-}
-
+# Command line prompt
 PROMPT_COMMAND=__prompt_command    # Function to generate PS1 after CMDs
 
 __prompt_command() {
     local EXIT="$?"                # This needs to be first
     PS1=""
 
-    local RCol='\[\e[0m\]'	# Exit color-change mode
+    # Your Username
+    local USERNAME="FalconIzmi"
 
     # Colors
+    local RCol='\[\e[0m\]'    # Exit color-change mode
     local Red='\[\e[0;31m\]'
     local Gre='\[\e[0;32m\]'
-    local LightGreen='\[\e[1;92m\]'
+    local LightGreenBold='\[\e[1;92m\]'
+    local LightBlueBold='\[\e[38;5;45;1m\]'
+    local DarkBlueBold='\[\e[38;5;33;1m\]'
 
-    # Virtual Env
+    # Setup Virtual Env
     if [[ -n "$VIRTUAL_ENV" ]]; then
         # Strip out the path
-	local RemovePrefix="${VIRTUAL_ENV##*/}"
-	#  Leave the env name
-	local RemoveSufix="${RemovePrefix%-*}"
-	local Venv="(${LightGreen}venv${RCol}:${RemoveSufix}) "
+    local RemovePrefix="${VIRTUAL_ENV##*/}"
+    #  Leave the env name
+    local RemoveSufix="${RemovePrefix%-*}"
+    local Venv="(${LightGreenBold}venv${RCol}:${RemoveSufix}) "
     else
         # In case you don't have one activated
         local Venv=''
     fi
     PS1+="${Venv}"
 
+    # Setup Git
+    source ~/.git-prompt.sh
+    local GIT=$(__git_ps1 " (%s)")
+
+    # Start adding code
     # Exit Code
     if [ $EXIT != 0 ]; then
         PS1+="[${Red}$EXIT${RCol}] "        # Add red if exit code non 0
@@ -87,10 +71,10 @@ __prompt_command() {
         PS1+="[${Gre}$EXIT${RCol}] "
     fi
 
-
-
-    #PS1+="[\t ${LightGreen}Izmi-home${RCol} \w]\n${LightGreen}$> ${RCol}"
-    PS1+="[\t] [\w]${LightGreen}$ ${RCol}\n${LightGreen}Izmi-home${RCol} ${LightGreen}> ${RCol}"
+    # First line
+    PS1+="[\t] ${DarkBlueBold}[\w]${RCol}\n"
+    # Second line
+    PS1+="${LightGreenBold}${USERNAME}${RCol}${LightBlueBold}${GIT}${RCol} ${Gre}\$${RCol} "
 }
 
 # Folder colors
