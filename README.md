@@ -137,3 +137,15 @@ ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_NAME -C "EMAIL"
 [https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account)
 
 </details>
+
+## Encoured Problems Lenovo Legion 
+
+<details>
+
+<summary>Not found input sound when headphone removed mic</summary>
+
+### 
+Microphone is not recognized in discord when you have headphone that it has been removed microphone from it.
+Follow steps under this comment: https://forum.manjaro.org/t/lenovo-legion-5-internal-mic-not-working/68064/8
+
+</details>
