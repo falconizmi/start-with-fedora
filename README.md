@@ -1,4 +1,5 @@
-# Things to do when you start in fedora
+# Start with fedora
+When you use Fedora at first some things are not working as should, or you know that you need to add something but you forgot the steps to do it, etc. I have bookmarks of things that I find myself useful when start fresh Fedora or things that are not usual and I wanted to save the steps, how to do them.
 
 ## System setup
 
@@ -149,3 +150,9 @@ Microphone is not recognized in discord when you have headphone that it has been
 Follow steps under this comment: https://forum.manjaro.org/t/lenovo-legion-5-internal-mic-not-working/68064/8
 
 </details>
+
+## Install waydroid
+
+[install-waydroid.md](https://github.com/falconizmi/start-with-fedora/blob/main/waydroid-install.md)
+
+
