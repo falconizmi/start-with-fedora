@@ -1,6 +1,10 @@
 # How to install waydroid on Fedora
+This turorial is for Fedora with weston (if you have the default GNOME you should be good)
 
-# 1) Install virtual box
+I will mark steps with **VM**, if want to do it on virtual machine and steps with **NOT-VM** if it is not common step and people with **VM** wouldnt need to do it. 
+
+
+# VM-1) Install virtual box
 I had many issues with my own Fedora e.g. the desktop environment needs to be wayland, x11 is not supported (you need to do some workaround) and for me was simpler to get VM where I would do there all the neccesary changes.
 
 1) Here install the virtual box: https://www.oracle.com/cz/virtualization/technologies/vm/downloads/virtualbox-downloads.html
@@ -14,7 +18,7 @@ sudo dnf install YOUR_APP_NAME.rpm
 
 
 
-# 2) Create the virtual machine
+# VM-2) Create the virtual machine
 I followed this video (from the specified time lapse) to create the virtual machine: https://youtu.be/wa8VFTcb2aY?t=177
 
 # 3) Install waydroid
@@ -25,7 +29,12 @@ For the install, I followed the documentation https://docs.waydro.id
 sudo dnf install waydroid
 ```
 
-Open waydroid (by searching it in your apps) and paste these URLs in the OTA fields:
+**NOT-VM-1**) Not able to open/start waydroid
+The fix for the issue is here: https://github.com/waydroid/waydroid/issues/493
+> Fix: in /var/lib/waydroid/lxc/waydroid/config comment out: lxc.apparmor.profile = unconfined.
+**Be aware** that even though you did it once, you might need to do it again, as with some updates, your changes to the config can be undone 
+
+2) Open waydroid (by searching it in your apps) and paste these URLs in the OTA fields:
 
 System OTA: https://ota.waydro.id/system
 
@@ -35,7 +44,7 @@ and choose as Android type choose GAPPS if you want to install apps from Google 
 
 ![image](https://github.com/user-attachments/assets/84e492c3-61a2-41ad-81ad-0aebf676a47c)
 
-2) Because we are on virtual machine, we to do this step: https://docs.waydro.id/faq/google-play-certification
+**VM-3**) If we are on virtual machine, we need to do this step: https://docs.waydro.id/faq/google-play-certification
 
 3) If you chose GAPPS
 you have to self certify for Google Play, follow steps here: https://docs.waydro.id/faq/google-play-certification
@@ -51,12 +60,13 @@ I found the cause of issue "This tablet isn't compatible with this app" in reddi
 > https://github.com/casualsnek/waydroid_script
 >
 > this link is also in the Waydroid documentation with some other good ones.
+
 Instead of using casualsnek/waydroid_script, I preferred to use https://github.com/ayasa520/waydroid-helper (that I installed in one of my attepmts, no other reason)
 
 There to make it run ARM applications, I installed the four packages (not sure if all needed), click show and then install:
 
 ![image](https://github.com/user-attachments/assets/4b7d59c9-9136-456a-9032-0929010c5da2)
- 
+
 
 Everything should be working now, enjoy :D
 
